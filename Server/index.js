@@ -1,20 +1,28 @@
-const express = require('express');
+require('dotenv').config()
+const express = require('express')
+const cors = require('cors');
 const connectDB = require('./db.js');
-const router  = require('./routes.js')
-
-const app = express();
-const port = 4000;
+const { router } = require('./Routes/routes.js');
+const { globalErrorhandler } = require('./middleware/errorHandler.js');
 
 
+const app  = express();
 connectDB();
 
-app.use("/api",router)
+app.use(cors());
+app.use(express.json())
+app.use("/api/v1",router);
 
 app.get('/',(req,res)=>{
- res.send('Hello mittro')
- console.log('this is default Api')
+ res.send('API is Working')
+ console.log("hello world");
+ 
 })
+app.use(globalErrorhandler);
 
-app.listen(port,()=>{
- console.log("server is listen on port:",port)
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT , ()=>{
+ console.log('server is running on PORT :',PORT);
+ 
 })
