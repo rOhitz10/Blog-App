@@ -54,7 +54,9 @@ const Home = () => {
             <Button variant='primary' children='Sign Up with Google' className='bg-white text-black hover:bg-blue-300 hover:border-blue-400'/>
             <Button variant='secondary' children='Sign Up with Apple'/>
             <p className='or-divider'>or</p>
+            <Link to='/register' className='btn' >
             <Button className='bg-black text-white' variant='primary' children='Create Account' />
+            </Link>
           </div>
           <h3>By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.</h3>
           <h3 className='font-extrabold'>
