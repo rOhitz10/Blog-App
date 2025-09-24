@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';  
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, Calendar, Sparkles, ArrowRight } from 'lucide-react';
-// import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/Auth';
 import { authApi } from '../../api/authApi';
 import { ROUTES } from '../../Config/routesConfig';
 import '../../styles/Auth.css';
@@ -13,8 +13,15 @@ const Register = () => {
   const [error, setError] = useState('');
   const [currentStep, setCurrentStep] = useState(1);
   const formRef = useRef();
+  const [userData,setuserData] = useState({
+    name:"",
+    userName:"",
+    email:"",
+    password:"",
+    date_of_birth:"",
+  })
   const navigate = useNavigate();
-  // const { login } = useAuth();
+  const { login } = useAuth();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -39,6 +46,13 @@ const Register = () => {
       }
     }
   };
+  const handleChange = (e)=>{
+    const {name,value} = e.target;
+   setuserData((prev)=>({
+    ...prev,
+    [name]:value
+  }))
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,23 +60,24 @@ const Register = () => {
     setError('');
 
     try {
-      const formData = new FormData(formRef.current);
-      const userData = Object.fromEntries(formData.entries());
+      // const formData = new FormData(formRef.current);
+      // const userData = Object.fromEntries(formData.entries());
+      
       
       if (!userData.userName || !userData.email || !userData.password || !userData.name || !userData.date_of_birth) {
         throw new Error('Please fill in all fields');
       }
-
+      
       userData.date_of_birth = new Date(userData.date_of_birth).toISOString();
       
       const response = await authApi.register(userData);
       
       if (response.success) {
         const loginResponse = await authApi.login({
-          email: userData.email,
+          userId: userData.email,
           password: userData.password
         });
-        
+                
         if (loginResponse.success) {
           login(loginResponse.user, loginResponse.token);
           navigate(ROUTES.DASHBOARD, { replace: true });
@@ -216,11 +231,13 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
+                    value={userData.name}
                     id="name"
                     name="name"
                     required
                     className="form-input"
                     placeholder="Enter your full name"
+                    onChange={(e)=>handleChange(e)}
                   />
                 </div>
 
@@ -231,11 +248,13 @@ const Register = () => {
                   </label>
                   <input
                     type="text"
+                    value={userData.userName}
                     id="userName"
                     name="userName"
                     required
                     className="form-input"
                     placeholder="Choose a username"
+                    onChange={(e)=>handleChange(e)}
                   />
                 </div>
 
@@ -246,10 +265,12 @@ const Register = () => {
                   </label>
                   <input
                     type="date"
+                    value={userData.date_of_birth}
                     id="date_of_birth"
                     name="date_of_birth"
                     required
                     className="form-input"
+                    onChange={(e)=>handleChange(e)}
                   />
                 </div>
 
@@ -278,11 +299,13 @@ const Register = () => {
                   </label>
                   <input
                     type="email"
+                    value={userData.email}
                     id="email"
                     name="email"
                     required
                     className="form-input"
                     placeholder="Enter your email"
+                    onChange={(e)=>handleChange(e)}
                   />
                 </div>
 
@@ -294,12 +317,14 @@ const Register = () => {
                   <div className="password-input-container">
                     <input
                       type={showPassword ? 'text' : 'password'}
+                      value={userData.password}
                       id="password"
                       name="password"
                       required
                       className="form-input"
                       placeholder="Create a strong password"
                       minLength={6}
+                      onChange={(e)=>handleChange(e)}
                     />
                     <button
                       type="button"

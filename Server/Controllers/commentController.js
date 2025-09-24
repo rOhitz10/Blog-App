@@ -19,13 +19,44 @@ const addComments = async(req,res)=>{
       message:"Comment added successfully",
       content
      })
-    
+        await Blog.findByIdAndUpdate(
+      blog,
+      { $inc: { commentsCount: +1 } },
+      { new: true }
+    );
   } catch (error) {
     res.json({msg:error.message,
       success:false
     })
   }
 }
+
+const deleteComment = async (req, res) => {
+  try {
+    const commentId  = req.body; 
+
+    if (!commentId) {
+      return res.status(400).json({ message: "commentId is required" });
+    }
+
+    console.log(deletedComment, "Deleted comment");
+    const deletedComment = await Comment.findByIdAndDelete(commentId);
+
+    if (!deletedComment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+
+    return res.status(200).json({
+      message: "Comment deleted successfully",
+      deletedComment,
+    });
+  } catch (error) {
+    console.error("Error deleting comment:", error);
+    return res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 
 const getBlogComments = async (req, res) => {
   try {
@@ -92,4 +123,4 @@ const getBlogComments = async (req, res) => {
   }
 };
 
-module.exports = {addComments,getBlogComments}
+module.exports = {addComments,getBlogComments,deleteComment}

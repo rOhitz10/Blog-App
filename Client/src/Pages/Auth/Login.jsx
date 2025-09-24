@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';  
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, Sparkles, LogIn } from 'lucide-react';
-// import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/Auth';
 import { authApi } from '../../api/authApi';
 import { ROUTES } from '../../Config/routesConfig';
 import '../../styles/Auth.css';
@@ -14,7 +14,7 @@ const Login = () => {
   const formRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
-  // const { login } = useAuth();
+  const { login } = useAuth();
 
   const from = location.state?.from?.pathname || ROUTES.DASHBOARD;
 

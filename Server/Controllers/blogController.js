@@ -5,9 +5,11 @@ const Coment = require('../models/Comment.js');
  
 const createBlog = async(req,res)=>{
  try {
-  const {title,description,author} = JSON.parse(req.body.blog);
-  const imageFile = req.file;
+const { title, description, author } = JSON.parse(req.body.blog);
+const imageFile = req.file; // multer populates this
 
+  console.log("redxtcyfgvuhij",req.body);
+  
   
   if(!title || !description ||!author) res.send("Field Missing");
 
@@ -41,27 +43,35 @@ const createBlog = async(req,res)=>{
  }
 }
 
-const getAllBlogs = async(req,res)=>{
+const getAllBlogs = async (req, res) => {
   try {
-    const Blogs = await Blog.find({});
+    const Blogs = await Blog.find({})
+      .populate('author', 'name userName email avatar') // Populate author details
+      .select('-content') // Exclude content field for list view
+      .sort({ createdAt: -1 }); // Sort by newest first
+
     console.log(Blogs);
-     res.status(200).json({
+    
+    res.status(200).json({
       Blogs,
-      msg : "GET ALL BLOGS ",
-      success:true
-     })
+      msg: "Blogs retrieved successfully",
+      success: true
+    });
     
   } catch (error) {
-    res.json({msg:"fail to access Blogs",
-      success:false
-    })
+    console.error('Error fetching blogs:', error);
+    res.status(500).json({
+      msg: "Failed to retrieve blogs",
+      success: false,
+      error: error.message
+    });
   }
-} 
+}
 
 const getSingleBlog = async (req,res) => {
   try {
     const {id} = req.params;
-    const blog = await Blog.findById(id);
+    const blog = await Blog.findById(id).populate("author", 'name userName email avatar')
     
     if (!blog) {
       res.json({
@@ -71,7 +81,7 @@ const getSingleBlog = async (req,res) => {
     
     res.status(200).json({
       blog,
-      msg : "GET ALL BLOGS ",
+      message : "Blog retrievede Successfully",
       success:true
      })
   } catch (error) {
