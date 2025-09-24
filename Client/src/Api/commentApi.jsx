@@ -1,4 +1,4 @@
-import api from '../Api/axiosConfig'
+import api from './axiosConfig'
 
 export const commentApi = {
  getBlogComments : async (blogId) => {
