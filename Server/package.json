@@ -2,10 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Blogging Server",
-  "main": "index.js",
+  "main": "app.js",
   "author": "Rohit Raj",
   "license": "MIT",
   "scripts": {
+    "start": "node main",
     "dev": "nodemon main"
   },
   "dependencies": {
