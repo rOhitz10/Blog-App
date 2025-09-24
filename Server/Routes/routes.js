@@ -4,9 +4,9 @@ const { createBlog, getAllBlogs, getSingleBlog} = require('../Controllers/blogCo
 const upload = require('../middleware/multer.js');
 const auth = require('../middleware/auth.js');
 
-const {signUp, login} = require('../Controllers/userController.js');
-const { addComments, getBlogComments } = require('../Controllers/commentController.js');
-const { likeKaro, getAllLikes, removeLike } = require('../Controllers/likeController.js');
+const {signUp, login, getUserProfile, getUserByUsername} = require('../Controllers/userController.js');
+const { addComments, getBlogComments, deleteComment } = require('../Controllers/commentController.js');
+const { getAllLikes, toggleLike } = require('../Controllers/likeController.js');
 
 const router = express.Router();
 
@@ -14,17 +14,20 @@ router.post("/admin-login",adminLogin);
 
 router.post("/signUp",signUp);
 router.post("/login",login)
+router.get("/user/me/:userId",auth,getUserProfile) //private
+router.get('/user/user/:userId', getUserByUsername); //public
 
-router.post("/create",auth,upload.single('imageFile'),createBlog)
+
+router.post("/create",auth,upload.single('image'),createBlog)
 router.get("/get-allBlogs",getAllBlogs)
-router.get("/:id",getSingleBlog)
+router.get("/blog/:id",getSingleBlog)
 
-router.post("/add-comment",addComments)
-router.get("/blog/:blogId",getBlogComments)
+router.post("/comment/add-comment",addComments) // create comments
+router.get("/comment/:blogId",getBlogComments) // get comments
+router.delete("/comment/delete-comment",deleteComment)
 
-router.post("/like/:blogId",likeKaro)
+router.post("/like/:blogId",auth,toggleLike)
 router.get("/like/:blogId",getAllLikes)
-router.delete('/like/:blogId', auth, removeLike);
 
 
 module.exports = {router}; 

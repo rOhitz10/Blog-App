@@ -2,13 +2,15 @@ export const ROUTES = {
  //public routes
  HOME:'/',
  BLOGS:'/blogs',
- BLOG: '/blogs/:id',
+ BLOG_DETAIL: '/blogs/:id',
  LOGIN: '/login',
  REGISTER: '/register',
 
  //private routes
- DASHBOARD: '/dashboard',
- CREATE_BLOG: '/blogs/create',
+  DASHBOARD: '/dashboard',
+  CREATE_BLOG: 'blogs/create',
+  PROFILE: '/dashboard/:id',
+  MY_BLOGS:'my-blogs'
 
   // Error routes
   // NOT_FOUND: '/404',
