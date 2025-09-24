@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { authApi } from '../../api/authApi';
+import { authApi } from '../../Api/authApi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, Eye, Heart, MessageCircle, Plus, User, Search, Filter, Grid, List, BookOpen } from 'lucide-react';
