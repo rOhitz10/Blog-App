@@ -28,11 +28,8 @@ export const authApi = {
  },
  myProfile: async (userData) => {
     try {
-        const {userId} = userData;
-        
-        
+        const {userId} = userData;        
         const response = await api.get(`/user/me/${userId}`)
-        console.log(response,"jnkmmklm");
         return response.data
     } catch (error) {
               throw error.response?.data || {message : "failed to access User Profile!"}

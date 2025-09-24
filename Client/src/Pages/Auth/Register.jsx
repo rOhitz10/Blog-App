@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, Calendar, Sparkles, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../contexts/Auth';
-import { authApi } from '../../api/authApi';
+import { authApi } from '../../Api/authApi';
 import { ROUTES } from '../../Config/routesConfig';
 import '../../styles/Auth.css';
 
@@ -59,10 +59,7 @@ const Register = () => {
     setIsLoading(true);
     setError('');
 
-    try {
-      // const formData = new FormData(formRef.current);
-      // const userData = Object.fromEntries(formData.entries());
-      
+    try { 
       
       if (!userData.userName || !userData.email || !userData.password || !userData.name || !userData.date_of_birth) {
         throw new Error('Please fill in all fields');

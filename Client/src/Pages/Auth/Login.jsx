@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, Sparkles, LogIn } from 'lucide-react';
 import { useAuth } from '../../contexts/Auth';
-import { authApi } from '../../api/authApi';
+import { authApi } from '../../Api/authApi';
 import { ROUTES } from '../../Config/routesConfig';
 import '../../styles/Auth.css';
 
