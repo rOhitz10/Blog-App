@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { authApi } from "../../api/authApi";
+import { authApi } from "../../Api/authApi"
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, MessageCircle, Settings, Edit, FileText, Eye, Heart, MessageCircle as CommentIcon } from "lucide-react";
