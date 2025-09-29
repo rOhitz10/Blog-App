@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { Calendar, Clock, Eye, Heart, MessageCircle, Plus, User, Search, Filter, Grid, List, BookOpen } from 'lucide-react';
 import { ROUTES } from '../../Config/routesConfig';
 import "../../Styles/components/BlogList.css"
-import { BlogCard } from './blogCard';
 
 export const BlogList = () => {
   const [blogs, setBlogs] = useState([]);

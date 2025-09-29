@@ -7,10 +7,7 @@ import {
   User, 
   Settings, 
   LogOut,
-  BarChart3,
-  Bookmark,
   TrendingUp,
-  Search
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/Auth';
