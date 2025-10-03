@@ -1,11 +1,11 @@
-import { Link, useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { ArrowLeft, Edit, Heart, MessageCircle, Share, Trash2 } from "lucide-react";
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { motion } from "framer-motion";
 import '../../Styles/pages/BlogDetail.css'
-import{ CommentSection} from "../../Components/comments/CommentSection";
 import { useAuth } from "../../contexts/Auth";
 import { blogApi } from "../../Api/blogApi";
+import{ CommentSection} from "../../Components/comments/CommentSection";
+import { ArrowLeft, Edit, Heart, MessageCircle, Share, Trash2 } from "lucide-react";
 
 export const BlogDetail = () => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ export const BlogDetail = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [isLiked, setIsLiked] = useState(false)
-  const [isBookmarked, setIsBookmarked] = useState(false)
+  // const [isBookmarked, setIsBookmarked] = useState(false)
 
   useEffect(() => {
     fetchBlog()

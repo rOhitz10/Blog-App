@@ -5,7 +5,7 @@ import { Eye, EyeOff, Mail, Lock, Sparkles, LogIn } from 'lucide-react';
 import { useAuth } from '../../contexts/Auth';
 import { authApi } from '../../Api/authApi';
 import { ROUTES } from '../../Config/routesConfig';
-import '../../styles/Auth.css';
+import '../../styles/pages/Auth.css'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
