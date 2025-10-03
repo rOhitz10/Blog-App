@@ -5,7 +5,7 @@ import { Eye, EyeOff, Mail, Lock, User, Calendar, Sparkles, ArrowRight } from 'l
 import { useAuth } from '../../contexts/Auth';
 import { authApi } from '../../Api/authApi';
 import { ROUTES } from '../../Config/routesConfig';
-import '../../Styles/pages/Auth.css'
+import 'Auth.css'
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
