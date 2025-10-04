@@ -54,6 +54,7 @@ export const BlogDetail = () => {
     }
   }
 
+
   const handleShare = async () => {
     if (navigator.share) {
       try {

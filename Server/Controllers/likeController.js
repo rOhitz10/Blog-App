@@ -4,8 +4,6 @@ const Like = require("../models/Like.js");
 const toggleLike = async (req, res) => {
    const { blogId } = req.params;
     const {userId} = req.body;
-
-    console.log("blogblog",blogId,userId);
     
 
   const blogExist = await Blog.findById(blogId);
@@ -21,12 +19,13 @@ const toggleLike = async (req, res) => {
     blog: blogId,
     likeBy: userId,
   });
-
+  
   if (existingLike) {
-    const deletedLike = await Like.findOneAndDelete({
-   blog: blogId,
-   user: userId
-  })
+    await Like.findOneAndDelete({
+      blog: blogId,
+      likeBy: userId
+    })
+   
 
     // Decrement like count on the blog
     await Blog.findByIdAndUpdate(
@@ -43,7 +42,7 @@ const toggleLike = async (req, res) => {
 
   const newLike = await Like.create({ blog:blogId, likeBy:userId });
   await newLike.populate("likeBy","userName name avatar")
-      // Decrement like count on the blog
+      // increment like count on the blog
     await Blog.findByIdAndUpdate(
       blogId,
       { $inc: { likesCount: 1 } },
