@@ -4,12 +4,18 @@ const cors = require('cors');
 const connectDB = require('./db.js');
 const { router } = require('./Routes/routes.js');
 const { globalErrorhandler } = require('./middleware/errorHandler.js');
+const originOptions = require('./config/corsOp.js');
 
 
 const app  = express();
 connectDB();
+// corsOptions;
 
-app.use(cors());
+app.use(cors({
+  origin: originOptions,
+  credentials: true
+}));
+
 app.use(express.json())
 app.use("/api/v1",router);
 

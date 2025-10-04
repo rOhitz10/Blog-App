@@ -55,16 +55,6 @@ export const BlogCard = ({ blog }) => {
           </div>
         </div>
 
-        {/* Tags */}
-        {blog.tags && blog.tags.length > 0 && (
-          <div className="blog-tags">
-            {blog.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="tag">
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
       </div>
     </>
   );

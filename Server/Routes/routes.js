@@ -26,7 +26,7 @@ router.post("/comment/add-comment",addComments) // create comments
 router.get("/comment/:blogId",getBlogComments) // get comments
 router.delete("/comment/delete-comment",deleteComment)
 
-router.post("/like/:blogId",auth,toggleLike)
+router.post("/like/:blogId",toggleLike)
 router.get("/like/:blogId",getAllLikes)
 
 

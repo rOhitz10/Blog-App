@@ -25,7 +25,7 @@ export const CommentSection = ({ blogId }) => {
 
   useEffect(() => {
     fetchComments();
-  }, [blogId]);
+  },[]);
 
   const fetchComments = async () => {
     try {
