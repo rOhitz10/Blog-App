@@ -12,7 +12,7 @@ import {
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/Auth';
 import { ROUTES } from '../../Config/routesConfig';
-import '../../Styles/components/Sidebar02.css';
+import '../../Styles/components/sidebar02.css';
 
 
 function Sidebar02() {

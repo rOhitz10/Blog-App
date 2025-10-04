@@ -4,7 +4,7 @@ import { ROUTES } from "../../Config/routesConfig";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion ,AnimatePresence} from "framer-motion";
 import { useAuth } from '../../contexts/Auth';
-import '../../Styles/components/Sidebar01.css'
+import '../../Styles/components/sidebar01.css'
 
 function Sidebar01() {
  const [isOpen ,setIsOpen] = useState(false);
