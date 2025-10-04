@@ -55,7 +55,6 @@ const Login = () => {
       if (!credentials.userId || !credentials.password) {
         throw new Error('Please fill in all fields');
       }
-      
       const response = await authApi.login(credentials);
       
       if (response.success) {

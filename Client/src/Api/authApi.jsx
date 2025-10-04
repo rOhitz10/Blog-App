@@ -12,6 +12,7 @@ export const authApi = {
  },
  login : async (userData) => {
   try {
+    console.log(import.meta.env.VITE_API_BASE_URL)
    const response = await api.post('/login',userData)
    return response.data
   } catch (error) {
